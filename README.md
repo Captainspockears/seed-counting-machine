@@ -1,1 +1,1 @@
-# seed-counting-machine
+# seed-quantifying-unit-prototype
