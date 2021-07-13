@@ -22,8 +22,8 @@ char keys[ROWS][COLS] = {
 };
 
 // Connections to Arduino
-byte rowPins[ROWS] = {9, 8, 7, 6};
-byte colPins[COLS] = {5, 4, 3, 2};
+byte rowPins[ROWS] = {52, 50, 48, 46};
+byte colPins[COLS] = {44, 42, 40, 38};
 
 /////////////////////////////////////////////////////Keypad & LCD Objects//////////////////////////////////////////////
                                           
@@ -31,36 +31,13 @@ byte colPins[COLS] = {5, 4, 3, 2};
 // keypad object
 Keypad userKeypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS); 
 // LCD object
-LiquidCrystal_I2C lcd(0x27, 20, 4);
+LiquidCrystal_I2C lcd(0x27, 20, 4); //SCL:A5, SDA:A4
 
 ////////////////////////////////////////////////////////VOID SETUP/////////////////////////////////////////////////////
 void setup() {
   // Setup LCD with backlight and initialize
+  Serial.begin(9600);
   lcd.backlight();
   lcd.begin();
 
-}
-
-////////////////////////////////////////////////////////SCROLL LEFT TO RIGHT///////////////////////////////////////////////////
-int Li          = 20;
-int Lii         = 1; 
-int Ri          = -1;
-int Rii         = -1;
-
-String Scroll_LCD_Left(String StrDisplay){
-  String result;
-  String StrProcess = "                " + StrDisplay + "                ";
-  result = StrProcess.substring(Li,Lii);
-  Li++;
-  Lii++;
-  if (Li>StrProcess.length()){
-    Li=19;
-    Lii=0;
-  }
-  return result;
-}
-
-void Clear_Scroll_LCD_Left(){
-  Li=20;
-  Lii=0;
 }
